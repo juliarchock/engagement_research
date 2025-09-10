@@ -6,7 +6,7 @@ Data/dataset.json : IRaw scraped tweet data for all politicians
 
 analysis.py : Sentiment analysis model
 
-output.json : Ooutput of our sentiment analysis model
+output.json : Output of our sentiment analysis model
 
 data_analysis.py : Script used to analyze output.json and dataset.json
 
