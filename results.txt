@@ -1,0 +1,141 @@
+=== Descriptive Statistics ===
+Engagement (replies + reposts + likes):
+count     36642.000000
+mean       1589.305469
+std        7725.551515
+min           0.000000
+25%          23.000000
+50%         115.000000
+75%         722.000000
+max      425339.000000
+
+Sentiment Score:
+count    36642.000000
+mean         0.333682
+std          0.673724
+min         -0.978414
+25%         -0.062885
+50%          0.524369
+75%          0.975267
+max          0.991464
+
+Content Category Counts:
+content_cat
+none                            27195
+policy                           3462
+attack                           2736
+encourage_vote                   2345
+policy|attack                     493
+attack|encourage_vote             235
+policy|encourage_vote             163
+policy|attack|encourage_vote       13
+
+--- Feature Summaries ---
+       log_engagement  tweet_length  num_hashtags  num_mentions   hour_of_day
+count    36642.000000  36642.000000  36642.000000  36642.000000  36642.000000
+mean         4.989385    209.898887      0.238087      0.404399     16.090552
+std          2.152430     74.599482      0.539049      1.105099      6.057063
+min          0.000000      1.000000      0.000000      0.000000      0.000000
+25%          3.178054    161.000000      0.000000      0.000000     15.000000
+50%          4.753590    228.000000      0.000000      0.000000     18.000000
+75%          6.583409    273.000000      0.000000      1.000000     20.000000
+max         12.960644    695.000000      6.000000     50.000000     23.000000
+
+--- OLS Regression Results ---
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:         log_engagement   R-squared:                       0.152
+Model:                            OLS   Adj. R-squared:                  0.152
+Method:                 Least Squares   F-statistic:                     548.9
+Date:                Sat, 03 May 2025   Prob (F-statistic):               0.00
+Time:                        01:33:08   Log-Likelihood:                -77052.
+No. Observations:               36642   AIC:                         1.541e+05
+Df Residuals:                   36629   BIC:                         1.542e+05
+Df Model:                          12                                         
+Covariance Type:            nonrobust                                         
+==================================================================================================================
+                                                     coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------------------------------------------
+Intercept                                          6.8992      0.058    119.507      0.000       6.786       7.012
+C(content_cat)[T.attack|encourage_vote]            1.2069      0.135      8.954      0.000       0.943       1.471
+C(content_cat)[T.encourage_vote]                   1.0139      0.056     18.133      0.000       0.904       1.124
+C(content_cat)[T.none]                            -0.1573      0.040     -3.903      0.000      -0.236      -0.078
+C(content_cat)[T.policy]                          -0.3713      0.051     -7.310      0.000      -0.471      -0.272
+C(content_cat)[T.policy|attack]                   -0.4188      0.097     -4.317      0.000      -0.609      -0.229
+C(content_cat)[T.policy|attack|encourage_vote]     0.3433      0.551      0.623      0.533      -0.737       1.424
+C(content_cat)[T.policy|encourage_vote]            0.2722      0.160      1.701      0.089      -0.041       0.586
+sentiment_score                                   -0.4738      0.016    -30.392      0.000      -0.504      -0.443
+tweet_length                                      -0.0029      0.000    -20.114      0.000      -0.003      -0.003
+num_hashtags                                      -0.8208      0.020    -41.983      0.000      -0.859      -0.782
+num_mentions                                      -0.2128      0.009    -22.402      0.000      -0.231      -0.194
+hour_of_day                                       -0.0480      0.002    -27.988      0.000      -0.051      -0.045
+==============================================================================
+Omnibus:                      738.364   Durbin-Watson:                   0.727
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              658.576
+Skew:                           0.276   Prob(JB):                    9.82e-144
+Kurtosis:                       2.644   Cond. No.                     1.19e+04
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 1.19e+04. This might indicate that there are
+strong multicollinearity or other numerical problems.
+
+--- Negative-Binomial GLM Results ---
+                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:             engagement   No. Observations:                36642
+Model:                            GLM   Df Residuals:                    36629
+Model Family:        NegativeBinomial   Df Model:                           12
+Link Function:                    Log   Scale:                          1.0000
+Method:                          IRLS   Log-Likelihood:            -2.9305e+05
+Date:                Sat, 03 May 2025   Deviance:                   1.4853e+05
+Time:                        01:33:08   Pearson chi2:                 9.78e+05
+No. Iterations:                    40   Pseudo R-squ. (CS):             0.5264
+Covariance Type:            nonrobust                                         
+==================================================================================================================
+                                                     coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------------------------------------------
+Intercept                                          9.1151      0.029    312.714      0.000       9.058       9.172
+C(content_cat)[T.attack|encourage_vote]            1.0393      0.068     15.277      0.000       0.906       1.173
+C(content_cat)[T.encourage_vote]                   0.9203      0.028     32.603      0.000       0.865       0.976
+C(content_cat)[T.none]                            -0.0075      0.020     -0.369      0.712      -0.047       0.032
+C(content_cat)[T.policy]                          -0.0750      0.026     -2.922      0.003      -0.125      -0.025
+C(content_cat)[T.policy|attack]                   -0.5681      0.049    -11.593      0.000      -0.664      -0.472
+C(content_cat)[T.policy|attack|encourage_vote]     0.0328      0.279      0.118      0.906      -0.514       0.580
+C(content_cat)[T.policy|encourage_vote]            0.7311      0.081      9.040      0.000       0.573       0.890
+sentiment_score                                   -0.5413      0.008    -68.732      0.000      -0.557      -0.526
+tweet_length                                      -0.0054   7.35e-05    -72.811      0.000      -0.005      -0.005
+num_hashtags                                      -0.8314      0.010    -83.972      0.000      -0.851      -0.812
+num_mentions                                      -0.1807      0.005    -35.252      0.000      -0.191      -0.171
+hour_of_day                                       -0.0368      0.001    -42.547      0.000      -0.039      -0.035
+==================================================================================================================
+
+--- Mixed-Effects Model Results ---
+                          Mixed Linear Model Regression Results
+==========================================================================================
+Model:                      MixedLM           Dependent Variable:           log_engagement
+No. Observations:           36642             Method:                       ML            
+No. Groups:                 7                 Scale:                        1.5592        
+Min. group size:            3309              Log-Likelihood:               -60161.4284   
+Max. group size:            10118             Converged:                    Yes           
+Mean group size:            5234.6                                                        
+------------------------------------------------------------------------------------------
+                                               Coef.  Std.Err.    z    P>|z| [0.025 0.975]
+------------------------------------------------------------------------------------------
+Intercept                                       5.135    0.542   9.472 0.000  4.072  6.197
+C(content_cat)[T.attack|encourage_vote]         0.554    0.085   6.513 0.000  0.387  0.720
+C(content_cat)[T.encourage_vote]                0.566    0.035  15.994 0.000  0.497  0.636
+C(content_cat)[T.none]                          0.023    0.025   0.893 0.372 -0.027  0.073
+C(content_cat)[T.policy]                        0.008    0.032   0.262 0.793 -0.054  0.071
+C(content_cat)[T.policy|attack]                -0.057    0.061  -0.931 0.352 -0.177  0.063
+C(content_cat)[T.policy|attack|encourage_vote]  0.523    0.347   1.505 0.132 -0.158  1.203
+C(content_cat)[T.policy|encourage_vote]         0.621    0.101   6.156 0.000  0.423  0.819
+sentiment_score                                -0.445    0.010 -44.205 0.000 -0.465 -0.425
+tweet_length                                    0.000    0.000   0.346 0.730 -0.000  0.000
+num_hashtags                                   -0.093    0.013  -7.182 0.000 -0.118 -0.067
+num_mentions                                   -0.142    0.006 -23.369 0.000 -0.154 -0.130
+hour_of_day                                    -0.015    0.001 -13.397 0.000 -0.017 -0.013
+politician Var                                  2.048    0.840                            
+==========================================================================================
+
