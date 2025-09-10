@@ -2,7 +2,7 @@ The motivation behind this research is to explore how politicians utilize Twitte
 
 Q: “How do Minnesota’s U.S House and Senate members utilize Twitter to garner engagement?
 
-Data/dataset.json : IRaw scraped tweet data for all politicians
+Politician_Name.json : Raw scraped tweet data for each politician
 
 analysis.py : Sentiment analysis model
 
